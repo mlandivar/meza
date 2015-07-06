@@ -33,9 +33,13 @@ require_once("$IP/extensions/SemanticResultFormats/SemanticResultFormats.php");
 require_once "$IP/extensions/SubPageList/SubPageList.php";
 ```
 
+
+3a: run composer self update
+
 4. Get Composer extensions
 ```bash
 cd ./extensions && rm -rf ./SemanticMediaWiki && rm -rf ./SemanticResultFormats && rm -rf ./SubPageList
+
 
 cd .. && composer require \
 	mediawiki/semantic-media-wiki:~2.0 \
@@ -43,13 +47,22 @@ cd .. && composer require \
 	mediawiki/sub-page-list:~1.1 \
 	mediawiki/semantic-meeting-minutes:~0.3
 
+composer require mediawiki/semantic-media-wiki:~2.0 mediawiki/semantic-result-formats:~2.0 mediawiki/sub-page-list:~1.1
+composer require mediawiki/semantic-maps:~3.0
+
+
 php maintenance/update.php --quick
 
 php extensions/SemanticMediaWiki/maintenance/SMW_refreshData.php -d 50 -v
 ```
 
+Pull latest LabeledSectionTransclusion
 
-Current config info:
+remove SRF type "exhibit"
+
+
+
+Current JSCMOD config info:
 ```
 wiki  JSCMOD
 ---------------------------
@@ -66,3 +79,50 @@ Commit   Commit date  Wikis
 9a40ec   2014-04-07   BME
 c1925c   2014-02-03   EVA, ROBO, TOPO, MissionSystems
 ```
+
+
+Current SMW version (latest stable = 2.2):
+
+Wiki    MW       SMW       SRF       SF
+-----------------------------------------
+MOD     1.23.9   2.0       2.0       2.7
+EVA     1.23.9   2.1       2.0       2.6
+ROBO    1.23.9   1.8.0.4   1.8 rc2   2.6
+OSO     1.23.9   2.2.1     2.1.2     3.3
+TOPO    1.23.9   2.1       2.1.1     2.6
+MS    	1.23.9   2.2.1     2.1.2     3.3
+BME   	1.23.9   2.2.1     2.1.2     3.3
+
+
+
+{
+    "require": {
+        "mediawiki/semantic-media-wiki": "~2.0",
+        "mediawiki/semantic-result-formats": "~2.0",
+        "mediawiki/sub-page-list": "~1.1"
+    }
+}
+
+
+
+
+"DynamicPageList" used on:
+
+EVA:
+	Template:Contributing Table 
+	Template:Recent Changes
+	Template:Recent Discussion
+
+MOD: none
+BME: none
+TOPO: none
+
+ROBO: 
+	Template:Recent Changes
+	Template:Recent Discussion
+
+MS:
+	21sProjectsFAQList
+
+OSO:
+	
