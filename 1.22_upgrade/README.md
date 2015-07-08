@@ -38,7 +38,12 @@ require_once "$IP/extensions/SubPageList/SubPageList.php";
 
 4. Get Composer extensions
 ```bash
-cd ./extensions && rm -rf ./SemanticMediaWiki && rm -rf ./SemanticResultFormats && rm -rf ./SubPageList
+cd ./extensions \
+	&& rm -rf ./SemanticMediaWiki \
+	&& rm -rf ./SemanticResultFormats \
+	&& rm -rf ./SubPageList \
+	&& rm -rf ./WhATEVER MAPS dir
+
 
 
 cd .. && composer require \
@@ -49,6 +54,7 @@ cd .. && composer require \
 
 composer require mediawiki/semantic-media-wiki:~2.0 mediawiki/semantic-result-formats:~2.0 mediawiki/sub-page-list:~1.1
 composer require mediawiki/semantic-maps:~3.0
+composer require mediawiki/semantic-extra-special-properties:~1.2
 
 
 php maintenance/update.php --quick
