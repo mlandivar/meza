@@ -4,37 +4,100 @@
 # as new installation of MediaWiki or importing an
 # existing MediaWiki installation.
 
-# global functions
+# @todo: global functions ?
 
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 GITDIR="$DIR/.git"
 
-# if no git directory, create it
+# if no git directory in same directory as run.sh, create appropriate directory
 if [ ! -d "$GITDIR" ]; then
     echo "Meza1 is not installed. Would you like to install?"
 
-    # check for and if reqd install git
+    # Check if git installed, and install it if required
+    if ! hash git 2>/dev/null; then
+	      echo "************ git not installed, installing ************"
+        yum install git -y
+    fi
 
     # install Meza1
 
-    # ask if change branch reqd
-    # global function change branch
+    # if no sources directory, create it
+    if [ ! -d ~/sources ]; then
+        mkdir ~/sources
+    fi
+
+    # meza1 directory exists in proper location
+    if [ -d ~/sources/meza1 ]; then
+
+        echo "A meza1 directory already exists at ~/sources/meza1. Do you want to remove it and reinstall? [Y/n]"
+        read overwrite_existing
+        if [ "$overwrite_existing" == "Y" ]; then
+            echo "Deleting existing installation"
+            rm -rf ~/sources/meza1
+        else
+            echo "Keeping existing installation. Use run.sh from that directory. Aborting."
+            exit 0;
+        fi
+
+    else # no meza1 directory
+
+        cd ~/sources
+        git clone https://github.com/enterprisemediawiki/Meza1 meza1
+        cd meza1
+        # git checkout "$git_branch"
+
+    fi
+
+else # .git directory exists
+
+    # anything special required?
 
 fi
 
-# query user for what they want to do
-# do you want to:
-# - fresh install
-# - install with import
-# - partial install (start and end points)
-# - upgrade a component (php, apache, etc)
-# - farm vs single?
 
-# while loop, check if mode var exists
 
+while [ -z "$run_mode" ] do
     echo "What do you want to do?"
+    echo "  h) help"
+    echo "  x) exit"
+    echo "  1) new mediawiki installation"
+    echo "  2) new application install, import existing wiki"
+    echo "  3) partial install (components such as PHP or Apache)"
+    echo "  4) upgrade a component"
+    echo "  5) upgrade Meza1"
+    echo "  6) switch branch"
+    read user_run_mode
 
-    # switch, kick user into sub-script or ask again
+    case "$user_run_mode" in
+    "h")
+        echo "sorry no help yet"
+        ;;
+    "x")
+        echo "exiting..."
+        exit 0
+        ;;
+    "1")
+        bash ~/sources/meza1/client_files/install.sh
+        ;;
+    "2")
+        echo "import existing wiki not yet available"
+        ;;
+    "3")
+        echo "partial install not yet available"
+        ;;
+    "4")
+        echo "upgrade a component not yet available"
+        ;;
+    "5")
+        echo "upgrade meza1 not yet available"
+        ;;
+    "6")
+        echo "switch branch not yet available"
+        ;;
+    *)
+        echo "that's not an option. please pick one of the options."
+        ;;
+    esac
 
-
+done
