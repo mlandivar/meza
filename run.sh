@@ -6,6 +6,12 @@
 
 # @todo: global functions ?
 
+
+# if PATH does not include /usr/local/bin, add it:
+if [[ $PATH == *"/usr/local/bin"* ]]; then
+    $PATH = "$PATH:/usr/local/bin";
+fi
+
 DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
 
 GITDIR="$DIR/.git"
@@ -71,7 +77,7 @@ while [ -z "$run_mode" ] do
 
     case "$user_run_mode" in
     "h")
-        echo "sorry no help yet"
+        cat ~/sources/meza1/client_files/help.txt
         ;;
     "x")
         echo "exiting..."

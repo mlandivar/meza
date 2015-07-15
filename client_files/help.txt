@@ -1,0 +1,19 @@
+Meza1 Help
+==========
+
+This help file is greatly under construction.
+Apologies for it's uselessness at this stage.
+
+This script allows you to install Meza1, which is
+an all-in-one MediaWiki install script targeted
+at CentOS/RedHat Linux. The script can install
+everything required for MediaWiki from a very
+minimal installation of Linux. Primarily this
+includes Apache, PHP, MySQL and all the MediaWiki
+application. Meza1 focuses on providing a
+consistent installation for enterprise use of
+MediaWiki, and providing newer extensions like
+VisualEditor, Elastic Search, Echo and Flow.
+
+Options:
+ - TBD
