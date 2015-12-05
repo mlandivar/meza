@@ -50,14 +50,14 @@ if [ "$mediawiki_git_install" = "y" ]; then
 	cd mediawiki
 
 	# Checkout latest released version
-	git checkout tags/1.26
+	git checkout tags/1.26.0
 	cmd_profile "END mediawiki git clone"
 else
 	cmd_profile "START mediawiki get from tarball"
-	wget http://releases.wikimedia.org/mediawiki/1.26/mediawiki-core-1.26.tar.gz
+	wget http://releases.wikimedia.org/mediawiki/1.26.0/mediawiki-core-1.26.0.tar.gz
 
 	mkdir mediawiki
-	tar xpvf mediawiki-core-1.26.tar.gz -C ./mediawiki --strip-components 1
+	tar xpvf mediawiki-core-1.26.0.tar.gz -C ./mediawiki --strip-components 1
 	cd mediawiki
 	cmd_profile "END mediawiki get from tarball"
 fi
